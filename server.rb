@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require_relative './lib/connection'
-require_relative './lib/user'
-require_relative './lib/tshirt'
+require_relative './lib/users'
+require_relative './lib/tshirts'
+require_relative './lib/transactions'
 
 require 'pry'
 
@@ -20,7 +21,7 @@ end
 
 post '/users/new' do
   user_hash = {
-    name: params["name"]
+    name: params["name"],
     email: params["email"]
   }
 
@@ -33,7 +34,7 @@ end
 put("/user/:id") do
   user = User.find_by({id: params[:id]})
   user_hash = {
-    name: params["name"]
+    name: params["name"],
     email: params["email"]
   }
   puts user_hash
