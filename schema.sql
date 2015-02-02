@@ -12,5 +12,3 @@ id INTEGER PRIMARY KEY,
 name TEXT,
 email TEXT
 );
-
-

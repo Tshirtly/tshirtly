@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<!--   <title>Document</title>
+ --></head>
+<body>
+  <form action="/tshirt/<%= tshirts.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" name placeholder="Color" value="<%= tshirts.color %>">
+    <input type="text" name="url" placeholder="Image" Url="" value="<%= tshirts.img %>">
+    <input type="text">
+    <button>Submit</button>
+  </form>
+  <form action="/tshirt/<%= tshirts.id %>" method="PUT">
+    <input type="hidden" name="_method" value="UPDATE">
+    <button>Update</button>
+  </form>
+</body>
+</html>
