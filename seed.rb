@@ -31,28 +31,28 @@ noel = User.create({
 Tshirt.create({
   color: "blue",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
+
 })
 
 Tshirt.create({
   color: "red",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
+
 })
 
 Tshirt.create({
   color: "purple",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
+
 })
 
 Tshirt.create({
   color: "yellow",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
+
 })
 
