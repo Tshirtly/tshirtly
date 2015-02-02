@@ -19,9 +19,9 @@
     <% tshirts.each do |tshirt| %>
       <li>
         <a href="/tshirt/<%= tshirt.id %>">
-        <%= tshirts.img %>
+
         </a>
-        <%= tshirts.price %>
+        <%= tshirt.price %>
       </li>
     <% end %>
   </ul>

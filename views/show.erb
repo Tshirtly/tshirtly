@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
  --></head>
 <body>
-  <h1><%= tshirts.img %></h1>
+
   <form action="/tshirt/<%= tshirt.id %>" method="POST">
     <input type="hidden" name="_method" value="PUT">
     <input type="text" placeholder="Quantity" value="<%= tshirt.quantity %>">
