@@ -17,10 +17,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Tshirts by color</th>
-            <th>Quantity</th>
-            <th>Re-up</th>
-
+            <th>Transactions</th>
             <th>Customers</th>
             <th>Tshirts purchased</th>
           </tr>
@@ -28,18 +25,14 @@
         <tbody>
           <tr>
             <% users.each do |user| %>
-            <td>user.id</td>
+            <% user.transactions.each do |transaction| %>
+            <td><%= user.transaction.id %></td>
             <td><%= user.name %></td>
+            <td><%= transaction.tshirt.color %></td>
           </tr>
           <% end %>
-          <tc>
-            <td>2</td>
-            <td>Debbie</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>John</td>
-          </tr>
+          <% end %>
+
         </tbody>
       </table>
       </div>
