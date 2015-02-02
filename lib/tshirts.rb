@@ -1,7 +1,5 @@
 require 'active_record'
-
-class Tshirt < ActiveRecord::Base
-  def users
-    User.where({user_id: self.id})
+class tshirts < ActiveRecord::Base
+  def tshirts
   end
 end

@@ -6,13 +6,14 @@
   <title>tshirtsly</title>
 </head>
 <body>
-  <a href="/">Pick a Shirt</a>
+  <h1>Pick a Shirt</h1>
   <ul>
     <% tshirts.each do |tshirt| %>
       <li>
         <a href="/tshirt/<%= tshirt.id %>">
         <%= tshirts.img %>
         </a>
+        <%= tshirts.price %>
       </li>
     <% end %>
   </ul>

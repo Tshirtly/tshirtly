@@ -7,8 +7,22 @@
  --></head>
 <body>
   <h1><%= tshirts.img %></h1>
-  <div>
+<!--   <div>
     <a href="/tshirt/<%= tshirts.id %>/select">Select</a>  
   </div>
+ -->  <form action="/tshirt/<%= tshirts.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" placeholder="Quantity" value="<%= tshirts.quantity %>">
+    <button>Submit</button>
+  </form>
+  
+  <form action="/tshirt/<%= tshirts.id %>" method="PUT">
+    <input type="hidden" name="_method" value="UPDATE">
+    <button>Update</button>
+  </form>
+  <form>
+    <input type="text">
+  </form>
 </body>
 </html>
+
