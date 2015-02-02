@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Admin</title>
+    </head>
+    <body>
+    <div class="container">
+      <h2>Table</h2>
+      <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
+      <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tshirts by color</th>
+            <th>Quantity</th>
+            <th>Re-up</th>
+
+            <th>Customers</th>
+            <th>Tshirts purchased</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% users.each do |user| %>
+            <td>user.id</td>
+            <td><%= user.name %></td>
+          </tr>
+          <% end %>
+          <tc>
+            <td>2</td>
+            <td>Debbie</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>John</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="table-responsive">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tshirts by color</th>
+            <th>Quantity</th>
+            <th>Re-up</th>
+
+        
+      
+  </table>
+</div>
+
+    </body>
+</html>
