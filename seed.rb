@@ -4,50 +4,50 @@ require_relative './lib/users'
 
 
 david = User.create({
-  name: "David",
+  name: "David"
 })
 
-neck_of_the_woods = Album.create({
-  title: "Neck of the Woods",
-  artist_id: silversun.id
+jerome = User.create({
+  name: "Jerome"
 })
 
-Song.create({
-  title: "Skin Graph",
-  album_id: neck_of_the_woods.id
+tyler = User.create({
+  name: "Tyler"
 })
 
-Song.create({
-  title: "The Pit",
-  album_id: neck_of_the_woods.id
+katrina = User.create({
+  name: "Katrina"
 })
 
-Song.create({
-  title: "Simmer",
-  album_id: neck_of_the_woods.id
+noel = User.create({
+  name: "Noel"
 })
 
-bastille = User.create({
-  name: "Bastille",
+Tshirt.create({
+  color: "blue",
+  quantity: 10,
+  price: 15,
+  user_id: 0
 })
 
-bad_blood = Album.create({
-  title: "Bad Blood",
-  artist_id: bastille.id
+Tshirt.create({
+  color: "red",
+  quantity: 10,
+  price: 15,
+  user_id: 0
 })
 
-Song.create({
-  title: "Pompeii",
-  album_id: bad_blood.id
+Tshirt.create({
+  color: "purple",
+  quantity: 10,
+  price: 15,
+  user_id: 0
 })
 
-Song.create({
-  title: "Things we lost in the fire",
-  album_id: bad_blood.id
-})
-
-Song.create({
-  title: "Bad Blood",
-  album_id: bad_blood.id
+Tshirt.create({
+  color: "yellow",
+  quantity: 10,
+  price: 15,
+  user_id: 0
 })
 
