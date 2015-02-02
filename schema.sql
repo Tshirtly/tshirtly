@@ -9,6 +9,8 @@ user_id INTEGER REFERENCES users
 
 CREATE TABLE users (
 id INTEGER PRIMARY KEY,
-name TEXT
+name TEXT,
+email TEXT
 );
+
 
