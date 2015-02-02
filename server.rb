@@ -12,7 +12,6 @@ after do
 end
 
 get("/") do
-
   erb :index, locals: {tshirts: Tshirt.all(), users: User.all() }
 end
 
