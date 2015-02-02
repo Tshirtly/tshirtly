@@ -1,0 +1,12 @@
+CREATE TABLE tshirts (
+id INTEGER PRIMARY KEY,
+color TEXT,
+img TEXT,
+user_id TEXT REFERENCES users
+);
+
+CREATE TABLE users (
+id INTEGER PRIMARY KEY,
+name TEXT,
+);
+
