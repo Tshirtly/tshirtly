@@ -3,15 +3,14 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/styles.css">
   <meta charset="UTF-8">
-  <title>tshirtsly</title>
+  <title>tshirtly</title>
 </head>
 <body>
   <h1>Pick a Shirt</h1>
   <div>
       <form action="/users/new" method="POST">
-    <input type="hidden" name="_method" value="PUT">
-    <input type="text" placeholder="Name" name="<%= name %>">
-    <input type="text" placeholder="Email" name="<%= email %>">
+    <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Email" name="email">
     <button>Submit</button>
   </form>
 
