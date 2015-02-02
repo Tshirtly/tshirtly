@@ -12,8 +12,10 @@ name TEXT,
 email TEXT
 );
 
+
 CREATE TABLE transactions (
 id INTEGER PRIMARY KEY,
 user_id INTEGER REFERENCES users,
 tshirt_id INTEGER REFERENCES tshirts
 );
+
