@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <meta charset="UTF-8">
+ --></head>
+<body>
+
+  <form action="/tshirt/<%= tshirt.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="text" placeholder="Quantity" value="<%= tshirt.quantity %>">
+    <button>Submit</button>
+  </form>
+  
+  <form action="/tshirt/<%= tshirt.id %>" method="PUT">
+    <input type="hidden" name="_method" value="UPDATE">
+    <button>Update</button>
+  </form>
+  <form>
+    <input type="text">
+  </form>
+</body>
+</html>
+

@@ -4,50 +4,51 @@ require_relative './lib/users'
 
 
 david = User.create({
-  name: "David"
+  name: "David",
+  email: "david@gmail.com"
 })
 
 jerome = User.create({
-  name: "Jerome"
+  name: "Jerome",
+  email: "jerome@gmail.com"
 })
 
 tyler = User.create({
-  name: "Tyler"
+  name: "Tyler",
+  email: "tyler@gmail.com"
 })
 
 katrina = User.create({
-  name: "Katrina"
+  name: "Katrina",
+  email: "katrina@gmail.com"
 })
 
 noel = User.create({
-  name: "Noel"
+  name: "Noel",
+  email: "noel@gmail.com"
 })
 
 Tshirt.create({
   color: "blue",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
 })
 
 Tshirt.create({
   color: "red",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
 })
 
 Tshirt.create({
   color: "purple",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
 })
 
 Tshirt.create({
   color: "yellow",
   quantity: 10,
-  price: 15,
-  user_id: 0
+  price: 15
 })
 

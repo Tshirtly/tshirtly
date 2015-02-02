@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>tshirtly</title>
+</head>
+<body>
+  <h1>Pick a Shirt</h1>
+  <div>
+      <form action="/users/new" method="POST">
+    <input type="text" placeholder="Name" name="name">
+    <input type="text" placeholder="Email" name="email">
+    <button>Submit</button>
+  </form>
+
+  </div>
+  <ul>
+    <% tshirts.each do |tshirt| %>
+      <li>
+        <a href="/tshirt/<%= tshirt.id %>">
+
+        </a>
+        <%= tshirt.price %>
+      </li>
+    <% end %>
+  </ul>
+</body>
+</html>
