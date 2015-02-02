@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="/styles.css">
-  <meta charset="UTF-8">
-  <title>Characters</title>
+<!--   <link rel="stylesheet" type="text/css" href="/styles.css">
+ -->  <meta charset="UTF-8">
+  <title>tshirtsly</title>
 </head>
 <body>
-  <a href="/characters/new">Create a Character</a>
+  <a href="/">Pick a Shirt</a>
   <ul>
-    <% characters.each do |character| %>
+    <% tshirts.each do |tshirt| %>
       <li>
-        <a href="/characters/<%= character.id %>">
-        <%= character.name %>
+        <a href="/tshirt/<%= tshirt.id %>">
+        <%= tshirts.img %>
         </a>
       </li>
     <% end %>
