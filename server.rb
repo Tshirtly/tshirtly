@@ -18,7 +18,7 @@ get("/:id") do
   erb(:show)
 end
 
-post '/users' do
+post '/users/new' do
   user_hash = {
     name: params["name"]
     email: params["email"]
@@ -40,7 +40,7 @@ put("/user/:id") do
 
   user.update(user_hash)
 
-  redirect ("/users")
+  redirect ("/")
 end
 
 # get("/users") do
