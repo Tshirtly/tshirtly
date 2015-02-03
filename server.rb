@@ -47,6 +47,21 @@ put("/user/:id") do
   redirect ("/")
 end
 
+put("/tshirt/:id") do
+  tshirt = Tshirt.find_by({id: params[:id]})
+
+  puts "what's left = #{tshirt.quantity}"
+  
+  new_total = tshirt.quantity + params["quantity"].to_i
+  puts new_total
+  tshirt_hash = {
+    quantity: new_total
+  }
+  tshirt.update(tshirt_hash)
+
+    redirect ("/admin")
+end
+
 get("/admin") do
 
   erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() } 
