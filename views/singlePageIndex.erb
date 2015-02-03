@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href='http://fonts.googleapis.com/css?family=Frijole' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+            
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <meta charset="UTF-8">
+  <title>tshirtly</title>
+</head>
+<body>
+
+
+<!-- Modal -->
+  <button id="log" type="button" class="btn btn-warn2ing btn-lg" data-toggle="modal" data-target="#admin">
+    Log In
+  </button>
+  <div class="modal fade" id="admin">
+    <!-- fade means fade in. modal is for prompt window on the site. -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Admin log-in</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/users/new" method="POST">
+            <input type = "text" name = "password">
+            <button>submit</button>
+            <button type="submit" id ="info"> Log In </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <button id="log" type="button" class="btn btn-warn2ing btn-lg" data-toggle="modal" data-target="#biggerBoat">
+    Log In
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="biggerBoat">
+    <!-- fade means fade in. modal is for prompt window on the site. -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Log In</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/users/new" method="POST">
+            <input type="text" id ="email" name = "name" placeholder="Your e-mail">
+            <input type="text" id ="username" name = "email" placeholder="User name">
+            <button type="submit" id ="info"> Log In </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<nav>
+  <h1>tshirt.ly</h1>
+</nav>
+  
+<% tshirts.each do |tshirt| %>
+ <div class = "shirt"><img src="<%= tshirt.img %>"/></div>
+ <div class= "price"><p>$<%= tshirt.price %></p></div>
+ <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%= tshirt.color %>">
+ Select
+</button>
+
+<div class="modal fade" id="<%= tshirt.color %>">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header-md">
+              <button type="button" class="close" data-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+            <h3 class="modal-title">limited <%= tshirt.color%> shirt</h3>
+                <img src="<%= tshirt.img%>">
+                <form action="">
+                  <div id="form-quantity">
+                    <h5> Quantity: </h5>
+                    <input type="number" name="some_name" min="1" max="<%= tshirt.quantity %>"> <span><i><%= tshirt.quantity%> left in stock</i></span>
+                  </div>
+                  <div id="form-email">
+                    <h5> Enter your email to complete purchase </h5>
+                    <input type="email" name="email" placeholder="">
+
+                  </div>
+                  <button class="btn btn-primary" role="button" id="submit-order">Submit</button>
+                </form>
+
+            </div> <!-- End Modal Body -->
+          </div> <!-- End Modal Content -->
+        </div> <!-- End Modal Dialogue -->
+ </div>
+
+<% end %>
+
+</body>
+</html>

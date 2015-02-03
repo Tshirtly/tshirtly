@@ -34,7 +34,6 @@
                     </div>
                 </div>
             </div>
-
             <% tshirts.each do |tshirt| %>
             <div class = "shirt"><img src="<%= tshirt.img %>"/></div>
             <div class= "price"><p>$<%= tshirt.price %></p></div>
@@ -56,13 +55,31 @@
                                     <h5> Enter email to complete purchase </h5>
                                     <input type="email" name="email" placeholder="email here">
                                 </div>
-                                <button type = "submit" class="btn btn-primary" role="button">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% end %>
 
-        </body>
-    </html>
+                                <button data-toggle="modal" data-target="#confirmModal" type = "submit" class="btn btn-primary" role="button">Submit</button>
+                            </form>
+                            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title">Purchase confirmed.</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Thank you!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                                        </div>
+                                        </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+
+                    </body>
+                </html>
