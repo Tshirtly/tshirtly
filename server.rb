@@ -12,7 +12,6 @@ after do
 end
 
 get("/") do
-
   erb :index, locals: {tshirts: Tshirt.all(), users: User.all() }
 end
 
@@ -48,9 +47,10 @@ put("/user/:id") do
   redirect ("/")
 end
 
-# get("/users") do
-#   erb(:"users/index", { locals: { users: User.all() } })
-# end
+get("/admin") do
+
+  erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() } 
+end
 
 # get("/users/new") do
 
