@@ -83,7 +83,7 @@ put("/transaction/:tshirt_id") do
   }
   tshirt.update(tshirt_hash)
   
-  erb :show, locals: {tshirt: tshirt}
+  redirect ("/")
 end
 
 get("/admin") do
