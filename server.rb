@@ -71,6 +71,7 @@ put("/transaction/:tshirt_id") do
   new_total = tshirt.quantity - params["quantity"].to_i
   
   transaction_hash = {
+    quantity: params[:quantity].to_i,
     user_id: user.id,
     tshirt_id: tshirt.id
   }

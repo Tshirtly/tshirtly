@@ -15,6 +15,7 @@ email TEXT
 
 CREATE TABLE transactions (
 id INTEGER PRIMARY KEY,
+quantity INTEGER,
 user_id INTEGER REFERENCES users,
 tshirt_id INTEGER REFERENCES tshirts
 );
