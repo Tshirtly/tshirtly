@@ -1,14 +1,48 @@
 h1 {
-	font-family: 'Frijole', cursive;
-	text-align: center;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
 }
+
+.btn-primary {
+	margin-bottom: 1em;
+}
+
 img {
-	display: block;
-	margin-left: auto;
-	margin-right: auto
+   display: block;
+   margin-left: auto;
+   margin-right: auto
 }
-.shirt {
-	height: 120px;
-	width: auto;
-	overflow: hidden;
+
+.shirt{
+width:auto;
+}
+
+#log{
+  margin-left:85%;
+  margin-top:3%;
+}
+
+button{
+  margin-left:48%;
+  margin-bottom:10%;
+}
+
+#email{
+  width:220px;
+  margin-bottom:30px;
+  margin-top:20px;
+}
+
+#username{
+  width:220px;
+}
+
+#info{
+  width:80px;
+  margin-left:150px;
+}
+
+.price{
+  font-size:25px;
+  margin-left:49%;
 }

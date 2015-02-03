@@ -12,13 +12,13 @@ after do
 end
 
 get("/") do
-  erb :index, locals: {tshirts: Tshirt.all(), users: User.all() }
+  erb :index, locals: {tshirts: Tshirt.all(), users: User.all(), transactions: Transaction.all() }
 end
 
 get("/tshirt/:id") do
   tshirt = Tshirt.find_by({id: params[:id]})
   
-  erb :show, locals: {tshirt: tshirt}
+  erb :show, locals: {tshirt: tshirt, transactions: Transaction.all()}
 end
 
 post '/users/new' do
@@ -44,6 +44,45 @@ put("/user/:id") do
   user.update(user_hash)
 
   redirect ("/")
+end
+
+put("/tshirt/:id/stock") do
+  tshirt = Tshirt.find_by({id: params[:id]})
+
+  puts "what's left = #{tshirt.quantity}"
+  
+  new_total = tshirt.quantity + params["quantity"].to_i
+  puts new_total
+  tshirt_hash = {
+    quantity: new_total
+  }
+  tshirt.update(tshirt_hash)
+
+    redirect ("/admin")
+end
+
+put("/transaction/:tshirt_id") do
+  tshirt = Tshirt.find_by({id: params[:tshirt_id]})
+  user = User.find_by({email: params[:email]})
+
+  puts "what's left = #{tshirt.quantity}"
+  
+  new_total = tshirt.quantity - params["quantity"].to_i
+  
+  transaction_hash = {
+    quantity: params[:quantity].to_i,
+    user_id: user.id,
+    tshirt_id: tshirt.id
+  }
+
+  transaction = Transaction.create(transaction_hash)
+
+  tshirt_hash = {
+    quantity: new_total
+  }
+  tshirt.update(tshirt_hash)
+  
+  erb :show, locals: {tshirt: tshirt}
 end
 
 get("/admin") do
