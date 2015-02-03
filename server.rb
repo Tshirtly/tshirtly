@@ -12,13 +12,13 @@ after do
 end
 
 get("/") do
-  erb :index, locals: {tshirts: Tshirt.all(), users: User.all() }
+  erb :index, locals: {tshirts: Tshirt.all(), users: User.all(), transactions: Transaction.all() }
 end
 
 get("/tshirt/:id") do
   tshirt = Tshirt.find_by({id: params[:id]})
   
-  erb :show, locals: {tshirt: tshirt}
+  erb :show, locals: {tshirt: tshirt, transactions: Transaction.all()}
 end
 
 post '/users/new' do
@@ -62,20 +62,25 @@ put("/tshirt/:id/stock") do
     redirect ("/admin")
 end
 
-put("/tshirt/:id/sell") do
-  tshirt = Tshirt.find_by({id: params[:id]})
+put("/transaction/:tshirt_id") do
+  tshirt = Tshirt.find_by({id: params[:tshirt_id]})
+  user = User.find_by({email: params[:email]})
 
   puts "what's left = #{tshirt.quantity}"
   
   new_total = tshirt.quantity - params["quantity"].to_i
-  puts new_total
+  
+  transaction_hash = {
+    user_id: user.id,
+    tshirt_id: tshirt.id
+  }
+
+  transaction = Transaction.create(transaction_hash)
+
   tshirt_hash = {
     quantity: new_total
   }
   tshirt.update(tshirt_hash)
-
-
-    tshirt = Tshirt.find_by({id: params[:id]})
   
   erb :show, locals: {tshirt: tshirt}
 end

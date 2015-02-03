@@ -27,13 +27,14 @@
           <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
         </div>
         <div class="modal-body">
-          <form action="/tshirt/<%= tshirt.id %>/sell" method="POST">
+          <form action="/transaction/<%= tshirt.id %>" method="POST">
           <input type="hidden" name="_method" value="PUT">
           <input type="text" id ="email" name = "email" placeholder="Email">
           <label for="quantity"></label>
           <input min="1" type="number" id="quantity" name="quantity" value="1" />
-          </form>
+
             <button type="submit" id ="info">Buy</button>
+
           </form>
         </div>
       </div>
