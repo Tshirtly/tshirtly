@@ -1,7 +1,7 @@
 # tshirt.ly
 
-The best t-shirts in Silicon Alley
-
+>"The best t-shirts in Silicon Alley"
+>  -overheard
 
 Contributers:
 | [**David**](https://github.com/DavideDaniel)
@@ -15,4 +15,8 @@ Contributers:
 > -Crawford 
 
 ###Our tech:
- * 
+* Ruby - did most of the work
+* Active Records - made us scratch our heads
+* Sinatra - held our hands
+* Bootstrap - made us smile
+* sqlite3 - kept the memories
