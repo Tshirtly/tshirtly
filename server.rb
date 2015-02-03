@@ -1,9 +1,23 @@
 require 'sinatra'
 require 'sinatra/reloader'
+require 'json'
 require_relative './lib/connection'
 require_relative './lib/users'
 require_relative './lib/tshirts'
 require_relative './lib/transactions'
+
+use Rack::Session::Pool, :cookie_only => false
+
+def authenticated?
+  session [:valid_user]
+end
+
+post '/session' do
+  if params[:password] === secret_password
+    session[:valud_user] = true
+    redirect '/admin'
+  end
+end
 
 require 'pry'
 
@@ -87,7 +101,7 @@ put("/transaction/:tshirt_id") do
 end
 
 get("/admin") do
-
+  if valid_user
   erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() } 
 end
 
