@@ -2,11 +2,17 @@ h1 {
   font-family: 'Raleway', sans-serif;
   text-align: center;
 }
+
+.btn-primary {
+	margin-bottom: 1em;
+}
+
 img {
    display: block;
    margin-left: auto;
    margin-right: auto
 }
+
 .shirt{
 width:auto;
 }
@@ -20,18 +26,22 @@ button{
   margin-left:48%;
   margin-bottom:10%;
 }
+
 #email{
   width:220px;
   margin-bottom:30px;
   margin-top:20px;
 }
+
 #username{
   width:220px;
-  }
+}
+
 #info{
   width:80px;
   margin-left:150px;
 }
+
 .price{
   font-size:25px;
   margin-left:49%;
