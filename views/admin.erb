@@ -55,9 +55,9 @@
                         <td class="text-center"><%= tshirt.id %></td>
                         <td class="text-center"><%= tshirt.color %></td>
                         <td class="text-center tshirtQuantity"><%= tshirt.quantity %></td>
-                        <td class="text-center"><form action="/tshirt/<%= tshirt.id %>" method="POST">
+                        <td class="text-center"><form action="/tshirt/<%= tshirt.id %>/stock" method="POST">
                             <input type="hidden" name="_method" value="PUT">
-                            <input type="text" name="quantity" placeholder="re-up!"/>
+                            <input min = "1" type="number" name="quantity" placeholder="re-up!"/>
                             <button >Submit</button>
                         </form></td>
                     </tr>

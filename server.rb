@@ -47,7 +47,7 @@ put("/user/:id") do
   redirect ("/")
 end
 
-put("/tshirt/:id") do
+put("/tshirt/:id/stock") do
   tshirt = Tshirt.find_by({id: params[:id]})
 
   puts "what's left = #{tshirt.quantity}"
@@ -60,6 +60,24 @@ put("/tshirt/:id") do
   tshirt.update(tshirt_hash)
 
     redirect ("/admin")
+end
+
+put("/tshirt/:id/sell") do
+  tshirt = Tshirt.find_by({id: params[:id]})
+
+  puts "what's left = #{tshirt.quantity}"
+  
+  new_total = tshirt.quantity - params["quantity"].to_i
+  puts new_total
+  tshirt_hash = {
+    quantity: new_total
+  }
+  tshirt.update(tshirt_hash)
+
+
+    tshirt = Tshirt.find_by({id: params[:id]})
+  
+  erb :show, locals: {tshirt: tshirt}
 end
 
 get("/admin") do
