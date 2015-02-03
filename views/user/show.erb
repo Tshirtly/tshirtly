@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" type="text/css" href="showStyles.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title><%= tshirt.color %></title>
+
+</head>
+<body>
+
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-3 col-md-offset-4"><img src="http://5kforbrandon.com/wp-content/uploads/2014/04/blue-tshirt.jpg"/></div>
+    </div>
+
+    <div class = "col-md-4 col-md-offset-5">
+      <form action="/tshirt/<%= tshirts.id %>" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+
+        <label for="quantity">Qty: </label>
+        <input min="1" type="number" id="quantity" name="quantity" value="1" />
+
+        <button>Buy</button>
+      </form>
+    </div>
+
+    <div class = "col-md-5 col-md-offset-6">
+
+      <form action="/tshirt/<%= tshirts.id %>" method="PUT">
+        <input type="hidden" name="_method" value="PUT">
+      </form>
+    </div>
+
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

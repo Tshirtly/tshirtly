@@ -12,11 +12,13 @@ after do
 end
 
 get("/") do
-  erb(:index)
+  erb :index, locals: {tshirts: Tshirt.all(), users: User.all() }
 end
 
-get("/:id") do
-  erb(:show)
+get("/tshirt/:id") do
+  tshirt = Tshirt.find_by({id: params[:id]})
+  
+  erb :show, locals: {tshirt: tshirt}
 end
 
 post '/users/new' do
@@ -27,8 +29,8 @@ post '/users/new' do
 
   User.create(user_hash)
 
-  erb :"users/index", locals: { users: User.all() }
-  redirect "/users"
+  erb :index, locals: { users: User.all() }
+  redirect "/"
 end
 
 put("/user/:id") do
@@ -44,9 +46,10 @@ put("/user/:id") do
   redirect ("/")
 end
 
-# get("/users") do
-#   erb(:"users/index", { locals: { users: User.all() } })
-# end
+get("/admin") do
+
+  erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() } 
+end
 
 # get("/users/new") do
 
@@ -55,7 +58,7 @@ end
 
 # get("/user/:id") do
 #   user = User.find_by({id: params[:id]})
-  
+
 #   erb(:"users/show", { locals: { user: user } })
 # end
 
