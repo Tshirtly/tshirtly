@@ -11,12 +11,14 @@ use Rack::Session::Pool, :cookie_only => false
 
 secret_password = ''
 json = ''
+
 File.open('secret.json', 'r') do |f|
   f.each_line do |line|
     json << line
   end
 end
 json_hash = JSON.parse(json)
+
 secret_password = json_hash['password']
 
 
@@ -24,7 +26,7 @@ def authenticated?
   session[:valid_user] == true
 end
 
-post '/admin' do
+post '/admin_confirm' do
   if params[:password] === secret_password
     session[:valid_user] = true
     redirect '/admin_confirm'
@@ -40,16 +42,6 @@ get '/admin_confirm' do
     redirect '/'
   end
 end
-
-get '/secret_page2' do
-  if authenticated?
-    return 'Hello! <a href = "http://localhost:4567/secret_page">Secret Page</a>'
-  else
-    redirect '/'
-  end
-end
-
-
 
 after do
   ActiveRecord::Base.connection.close
@@ -131,118 +123,121 @@ put("/transaction/:tshirt_id") do
 end
 
 get("/admin") do
-
+  if authenticated?
     erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() }
+  else
+    redirect '/'
   end
+end
 
 
-  # get("/users/new") do
+# get("/users/new") do
 
-  #   erb(:"users/new", { locals: { users: User.all() } })
-  # end
+#   erb(:"users/new", { locals: { users: User.all() } })
+# end
 
-  # get("/user/:id") do
-  #   user = User.find_by({id: params[:id]})
+# get("/user/:id") do
+#   user = User.find_by({id: params[:id]})
 
-  #   erb(:"users/show", { locals: { user: user } })
-  # end
+#   erb(:"users/show", { locals: { user: user } })
+# end
 
-  # post '/users' do
-  #   user_hash = {
-  #     name: params["name"]
-  #   }
+# post '/users' do
+#   user_hash = {
+#     name: params["name"]
+#   }
 
-  #   User.create(user_hash)
+#   User.create(user_hash)
 
-  #   erb :"users/index", locals: { users: User.all() }
-  #   redirect "/users"
-  # end
-
-
-  # put("/user/:id") do
-  #   user = User.find_by({id: params[:id]})
-  #   user_hash = {
-  #     name: params["name"]
-  #   }
-  #   puts user_hash
-
-  #   user.update(user_hash)
-
-  #   redirect ("/users")
-  # end
-
-  # delete("/user/:id") do
-  #   user = User.find_by({id: params[:id]})
-  #   tshirt = Tshirt.where({user_id: params[:id]})
-
-  #   end
-  #   tshirts.each do |tshirt|
-  #     tshirt.destroy
-  #   end
-  #   user.destroy
-
-  #   redirect "/users"
-  # end
-
-  # get("/user/:id/edit") do
-  #   user = User.find_by({id: params[:id]})
-  #   erb(:"users/edit", { locals: { user: user } })
-  # end
-
-  # get("/tshirts") do
-  #   erb(:"tshirts/index", { locals: { tshirts: Tshirt.all() } })
-  # end
-
-  # post("/tshirts") do
-  #   tshirt_hash = {
-  #     color: params["color"],
-  #     user_id: params["user_id"]
-  #     quantity: quantity: 1,
-  #     price: 15
-  #   }
-
-  #   tshirt = Tshirt.create(tshirt_hash)
-
-  #   redirect"/tshirt/#{tshirt.id}"
-  # end
+#   erb :"users/index", locals: { users: User.all() }
+#   redirect "/users"
+# end
 
 
-  # get("/tshirt/:id") do
-  #   puts "Hit the route /:id"
-  #   tshirt = Tshirt.find_by({id: params[:id]})
+# put("/user/:id") do
+#   user = User.find_by({id: params[:id]})
+#   user_hash = {
+#     name: params["name"]
+#   }
+#   puts user_hash
 
-  #   erb(:"tshirts/show", { locals: { tshirt: tshirt } })
-  # end
+#   user.update(user_hash)
+
+#   redirect ("/users")
+# end
+
+# delete("/user/:id") do
+#   user = User.find_by({id: params[:id]})
+#   tshirt = Tshirt.where({user_id: params[:id]})
+
+#   end
+#   tshirts.each do |tshirt|
+#     tshirt.destroy
+#   end
+#   user.destroy
+
+#   redirect "/users"
+# end
+
+# get("/user/:id/edit") do
+#   user = User.find_by({id: params[:id]})
+#   erb(:"users/edit", { locals: { user: user } })
+# end
+
+# get("/tshirts") do
+#   erb(:"tshirts/index", { locals: { tshirts: Tshirt.all() } })
+# end
+
+# post("/tshirts") do
+#   tshirt_hash = {
+#     color: params["color"],
+#     user_id: params["user_id"]
+#     quantity: quantity: 1,
+#     price: 15
+#   }
+
+#   tshirt = Tshirt.create(tshirt_hash)
+
+#   redirect"/tshirt/#{tshirt.id}"
+# end
+
+
+# get("/tshirt/:id") do
+#   puts "Hit the route /:id"
+#   tshirt = Tshirt.find_by({id: params[:id]})
+
+#   erb(:"tshirts/show", { locals: { tshirt: tshirt } })
+# end
 
 
 
-  # get("/tshirt/:id/edit") do
-  #   tshirt = Tshirt.find_by({id: params[:id]})
+# get("/tshirt/:id/edit") do
+#   tshirt = Tshirt.find_by({id: params[:id]})
 
-  #   erb(:"tshirts/edit", { locals: { tshirt: tshirt, users: User.all() } })
-  # end
+#   erb(:"tshirts/edit", { locals: { tshirt: tshirt, users: User.all() } })
+# end
 
-  # put("/tshirt/:id") do
-  #   tshirt_hash = {
-  #     color: params["color"],
-  #     user_id: params["user_id"]
-  #   }
+# put("/tshirt/:id") do
+#   tshirt_hash = {
+#     color: params["color"],
+#     user_id: params["user_id"]
+#   }
 
-  #   tshirt = Tshirt.find_by({id: params[:id]})
-  #   tshirt.update(tshirt_hash)
+#   tshirt = Tshirt.find_by({id: params[:id]})
+#   tshirt.update(tshirt_hash)
 
-  #   erb(:"tshirts/show", { locals: { tshirt: tshirt } })
-  # end
+#   erb(:"tshirts/show", { locals: { tshirt: tshirt } })
+# end
 
-  # delete("/tshirt/:id") do
-  #   tshirt = Tshirt.find_by({id: params[:id]})
+# delete("/tshirt/:id") do
+#   tshirt = Tshirt.find_by({id: params[:id]})
 
-  #   tshirt.destroy
+#   tshirt.destroy
 
-  #   redirect "/tshirts"
-  # end
+#   redirect "/tshirts"
+# end
 
-  # get("/tshirts/new") do
+# get("/tshirts/new") do
 
-  #   erb(:"tshirts/new", { locals: { users: User.all() } })
-  # end
+#   erb(:"tshirts/new", { locals: { users: User.all() } })
+# end
