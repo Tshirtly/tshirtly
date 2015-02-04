@@ -1,7 +1,12 @@
 require_relative './lib/connection'
 require_relative './lib/tshirts'
 require_relative './lib/users'
+require_relative './lib/password'
 
+adminDave = Admin.create({
+  admin: "david", 
+  password: "admin"
+})
 
 david = User.create({
   name: "David",
