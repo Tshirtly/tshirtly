@@ -22,5 +22,4 @@ Contributers:
 * sqlite3 - kept the memories
 
 ###Our Schema
-Inline-style: 
 ![alt text](https://github.com/mrbernz/tshirtly/blob/master/tshirts_schema.jpg)
