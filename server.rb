@@ -80,7 +80,7 @@ put("/tshirt/:id/stock") do
 end
 
 put("/transaction/:tshirt_id") do
-  
+
   tshirt = Tshirt.find_by({id: params[:tshirt_id]})
   user = User.find_by({email: params[:email]})
 
@@ -100,7 +100,7 @@ put("/transaction/:tshirt_id") do
     quantity: new_total
   }
   tshirt.update(tshirt_hash)
-
+  redirect '/'
 end
 
 get("/admin") do
