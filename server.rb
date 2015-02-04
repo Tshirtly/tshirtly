@@ -1,37 +1,30 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
+require 'bcrypt'
 require_relative './lib/connection'
 require_relative './lib/users'
 require_relative './lib/tshirts'
 require_relative './lib/transactions'
+require_relative './lib/password'
 require 'pry'
-
+admin_pw = BCrypt::Password.create("admin")
 use Rack::Session::Pool, :cookie_only => false
-
-secret_password = ''
-json = ''
-
-File.open('secret.json', 'r') do |f|
-  f.each_line do |line|
-    json << line
-  end
-end
-json_hash = JSON.parse(json)
-
-secret_password = json_hash['password']
-
 
 def authenticated?
   session[:valid_user] == true
 end
 
 post '/admin_confirm' do
-  if params[:password] === secret_password
-    session[:valid_user] = true
+	puts "recieving this pw: #{params["password"]}"
+
+  # secure_admin = Admin.find_by({admin: "david"})
+binding.pry
+	if BCrypt::Password.new(admin_pw) == params["password"]
+		session[:valid_user] = true
     redirect '/admin_confirm'
   else
-    redirect '/'
+    redirect "http://giphy.com/search/hell-no/"
   end
 end
 
@@ -58,7 +51,7 @@ get("/tshirt/:id") do
 end
 
 post '/users/new' do
-
+  
   user_hash = {
     name: params["name"],
     email: params["email"]

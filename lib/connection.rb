@@ -5,4 +5,5 @@ ActiveRecord::Base.establish_connection({
                                           :database => "tshirtly.db"
 })
 
+
 ActiveRecord::Base.logger = Logger.new(STDOUT);
