@@ -17,10 +17,9 @@ File.open('secret.json', 'r') do |f|
     json << line
   end
 end
+
 json_hash = JSON.parse(json)
-
 secret_password = json_hash['password']
-
 
 def authenticated?
   session[:valid_user] == true
@@ -31,7 +30,7 @@ post '/admin_confirm' do
     session[:valid_user] = true
     redirect '/admin_confirm'
   else
-    redirect '/'
+    redirect "http://giphy.com/search/hell-no/"
   end
 end
 
@@ -58,11 +57,10 @@ get("/tshirt/:id") do
 end
 
 post '/users/new' do
-
+  
   user_hash = {
     name: params["name"],
     email: params["email"]
-    password: params ["password"]
   }
 
   User.create(user_hash)

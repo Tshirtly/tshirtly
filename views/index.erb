@@ -13,103 +13,99 @@
             <title>tshirt.ly</title>
         </head>
         <body>
-            <h2 class = "bold text-center">tshirt.ly</h2>
-            <button id="log" type="button" class="btn btn-warning btn-md" data-toggle="modal" data-target="#admin">
-            Admin
-            </button>
-            <div class="modal fade" id="admin">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Admin log-in</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/admin_confirm" method="POST">
-                                <div class="form-group">
-                                    <p>Enter Password:</p>
-                                    <input class="form-control" type = "text" name = "password">
-                                </div>
-                                <button class="btn btn-default" type="submit">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button id="log" type="button" class="btn btn-warn2ing btn-sm" data-toggle="modal" data-target="#biggerBoat">
-            Log In
-            </button>
-            <div class="modal fade" id="biggerBoat">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title" id="myModalLabel">Sign up</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form action="/users/new" method="POST">
-                                <input type="text" id ="email" name = "name" placeholder="Your e-mail">
-                                <input type="text" id ="username" name = "email" placeholder="User name">
-                                <input type="text" id ="pw" name = "password" placeholder="Password">
-                                <input type="text" id ="pwConfirm" name = "confirm_password" placeholder="Confirm password">
-                                <button type="submit" id ="info">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <% tshirts.each do |tshirt| %>
-            <div class = "shirt"><img src="<%= tshirt.img %>"/></div>
-            <div class= "price"><p>$<%= tshirt.price %></p></div>
-            <button type="button" class="btn btn-primary selectShirt" data-toggle="modal" data-target="#<%= tshirt.color %>">
-            Select
-            </button>
-            <div class="modal fade" id="<%= tshirt.color %>">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <h3 class="modal-title">limited <%= tshirt.color%> shirt</h3>
-                            <img src="<%= tshirt.img%>">
-                            <form action="/transaction/<%= tshirt.id %>" id = "purchasing" method="POST">
-                                <input type="hidden" name="_method" value="PUT">
-                                <div id="form-quantity">
-                                    <input type="number" name = "quantity" min="1" max="<%= tshirt.quantity %>"> <span><i><%= tshirt.quantity%> left in stock</i></span>
-                                </div>
-                                <div>
-                                    <h5> Enter email to complete purchase </h5>
-                                    <input type="email" name="email" placeholder="email here">
-                                </div>
+            <nav class="navbar navbar-default navbarinverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsingNav">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        </button>
+                        <p class="navbar-brand">tshirt.ly</p>
 
-                                <button type = "submit" class="btn btn-primary" role="button">Submit</button>
-                            </form>
-                            <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title">Purchase confirmed.</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            Thank you!
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="collapsingNav">
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                            <li><a data-toggle="modal" data-target="#biggerBoat">Sign up to purchase</a></li>
+                            <li><a data-toggle="modal" data-target="#admin">
+                                Admin
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <h1 class = "bold text-center">tshirt.ly</h1>
+                <div class="modal fade" id="admin">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Admin log-in</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/admin_confirm" method="POST">
+                                    <div class="form-group">
+                                        <p>Enter Password:</p>
+                                        <input class="form-control" type = "text" name = "password">
                                     </div>
-                                </div>
+                                    <button class="btn btn-default btn-sm" type="submit">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <% end %>
-            <script type="text/javascript">
-                                
-                                var submitButton = document.f
-                                $('#purchasing').submit(function(){
-                                $('#confirmModal').modal('show')
-                                })
-                                
-            </script>
-        </body>
-    </html>
+
+                <div class="modal fade" id="biggerBoat">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal"></button>
+                                <h4 class="modal-title" id="myModalLabel">Sign up</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>On tshirt.ly you don't need a password, but you must sign up to buy t-shirts!</p>
+                                <form class = "form-group" action="/users/new" method="POST">
+                                    <input class="form-control" type="text" id ="email" name = "name" placeholder="Your e-mail" required>
+                                    <input class="form-control" type="text" id ="username" name = "email" placeholder="User name" required>
+                                </form>
+                                <button type="submit" class="btn btn-default btn-sm">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% tshirts.each do |tshirt| %>
+                <div class = "shirt"><img src="<%= tshirt.img %>"/></div>
+                <div class= "price"><p>$<%= tshirt.price %></p></div>
+                <button type="button" class="btn btn-primary selectShirt" data-toggle="modal" data-target="#<%= tshirt.color %>">
+                Select
+                </button>
+                <div class="modal fade" id="<%= tshirt.color %>">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <h3 class="modal-title">limited <%= tshirt.color%> shirt</h3>
+                                <img src="<%= tshirt.img%>">
+                                <form class = "form-quantity" action="/transaction/<%= tshirt.id %>" id = "purchasing" method="POST">
+                                    <input type="hidden" name="_method" value="PUT">
+                                    <div>
+                                        <input type="number" name = "quantity" min="1" max="<%= tshirt.quantity %>"> <span><i><%= tshirt.quantity%> left in stock</i></span>
+                                    </div>
+                                    <div>
+                                        <h5> Enter email to complete purchase </h5>
+                                        <input type="email" name="email" placeholder="email here" required>
+                                    </div>
+                                    <button type = "submit" class="btn btn-primary btn-sm center-block" role="button">Submit</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </body>
+        </html>
