@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
+require 'bcrypt'
 require_relative './lib/connection'
 require_relative './lib/users'
 require_relative './lib/tshirts'
@@ -17,16 +18,20 @@ File.open('secret.json', 'r') do |f|
     json << line
   end
 end
+puts secret_password
+
 
 json_hash = JSON.parse(json)
+my_pw = BCrypt::Password.create(secret_password)
 secret_password = json_hash['password']
+puts secret_password
 
 def authenticated?
   session[:valid_user] == true
 end
 
 post '/admin_confirm' do
-  if params[:password] === secret_password
+	if BCrypt::Password.new(row.password) == params["password"]
     session[:valid_user] = true
     redirect '/admin_confirm'
   else
