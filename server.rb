@@ -50,30 +50,16 @@ get("/tshirt/:id") do
   erb :show, locals: {tshirt: tshirt, transactions: Transaction.all()}
 end
 
-post '/users/new' do
-  
+post '/users/' do
+  puts "we're in the new user route"
   user_hash = {
     name: params["name"],
     email: params["email"]
   }
 
   User.create(user_hash)
-
-  erb :index, locals: { users: User.all() }
+  
   redirect "/"
-end
-
-put("/user/:id") do
-  user = User.find_by({id: params[:id]})
-  user_hash = {
-    name: params["name"],
-    email: params["email"]
-  }
-  puts user_hash
-
-  user.update(user_hash)
-
-  redirect ("/")
 end
 
 put("/tshirt/:id/stock") do
@@ -123,6 +109,19 @@ get("/admin") do
   end
 end
 
+
+# put("/user/:id") do
+#   user = User.find_by({id: params[:id]})
+#   user_hash = {
+#     name: params["name"],
+#     email: params["email"]
+#   }
+#   puts user_hash
+
+#   user.update(user_hash)
+
+#   redirect ("/")
+# end
 
 # get("/users/new") do
 

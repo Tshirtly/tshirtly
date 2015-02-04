@@ -69,11 +69,13 @@
                             </div>
                             <div class="modal-body">
                                 <p>On tshirt.ly you don't need a password, but you must sign up to buy t-shirts!</p>
-                                <form class = "form-group" action="/users/new" method="POST">
-                                    <input class="form-control" type="text" id ="email" name = "name" placeholder="Your e-mail" required>
-                                    <input class="form-control" type="text" id ="username" name = "email" placeholder="User name" required>
-                                </form>
+                                <form action="/users/" method="POST">
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" id ="email" name = "email" placeholder="Your e-mail" required>
+                                    <input class="form-control" type="text" id ="username" name = "name" placeholder="User name" required>
+                                </div>
                                 <button type="submit" class="btn btn-default btn-sm">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
