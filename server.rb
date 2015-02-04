@@ -20,7 +20,7 @@ post '/admin_confirm' do
 
   # secure_admin = Admin.find_by({admin: "david"})
 binding.pry
-	if BCrypt::Password.new(admin_pw) === params["password"]
+	if BCrypt::Password.new(admin_pw) == params["password"]
 		session[:valid_user] = true
     redirect '/admin_confirm'
   else
