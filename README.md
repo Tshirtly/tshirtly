@@ -21,5 +21,5 @@ Contributers:
 * Bootstrap - made us smile
 * sqlite3 - kept the memories
 
-###Our Schema
+###Our Schema:
 ![alt text](https://github.com/mrbernz/tshirtly/blob/master/tshirts_schema.jpg)
