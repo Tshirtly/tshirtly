@@ -1,25 +1,51 @@
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
+require 'bcrypt'
 require_relative './lib/connection'
 require_relative './lib/users'
 require_relative './lib/tshirts'
 require_relative './lib/transactions'
+require 'pry'
 
 use Rack::Session::Pool, :cookie_only => false
 
+secret_password = ''
+json = ''
+
+File.open('secret.json', 'r') do |f|
+  f.each_line do |line|
+    json << line
+  end
+end
+puts secret_password
+
+
+json_hash = JSON.parse(json)
+my_pw = BCrypt::Password.create(secret_password)
+secret_password = json_hash['password']
+puts secret_password
+
 def authenticated?
-  session [:valid_user]
+  session[:valid_user] == true
 end
 
-post '/session' do
-  if params[:password] === secret_password
-    session[:valud_user] = true
-    redirect '/admin'
+post '/admin_confirm' do
+	if BCrypt::Password.new(row.password) == params["password"]
+    session[:valid_user] = true
+    redirect '/admin_confirm'
+  else
+    redirect "http://giphy.com/search/hell-no/"
   end
 end
 
-require 'pry'
+get '/admin_confirm' do
+  if authenticated?
+    redirect  '/admin'
+  else
+    redirect '/'
+  end
+end
 
 after do
   ActiveRecord::Base.connection.close
@@ -31,7 +57,7 @@ end
 
 get("/tshirt/:id") do
   tshirt = Tshirt.find_by({id: params[:id]})
-  
+
   erb :show, locals: {tshirt: tshirt, transactions: Transaction.all()}
 end
 
@@ -64,7 +90,7 @@ put("/tshirt/:id/stock") do
   tshirt = Tshirt.find_by({id: params[:id]})
 
   puts "what's left = #{tshirt.quantity}"
-  
+
   new_total = tshirt.quantity + params["quantity"].to_i
   puts new_total
   tshirt_hash = {
@@ -72,7 +98,7 @@ put("/tshirt/:id/stock") do
   }
   tshirt.update(tshirt_hash)
 
-    redirect ("/admin")
+  redirect ("/admin")
 end
 
 put("/transaction/:tshirt_id") do
@@ -80,9 +106,9 @@ put("/transaction/:tshirt_id") do
   user = User.find_by({email: params[:email]})
 
   puts "what's left = #{tshirt.quantity}"
-  
+
   new_total = tshirt.quantity - params["quantity"].to_i
-  
+
   transaction_hash = {
     quantity: params[:quantity].to_i,
     user_id: user.id,
@@ -95,14 +121,18 @@ put("/transaction/:tshirt_id") do
     quantity: new_total
   }
   tshirt.update(tshirt_hash)
-  
+
   redirect ("/")
 end
 
 get("/admin") do
-  if valid_user
-  erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() } 
+  if authenticated?
+    erb :admin,  locals: { users: User.all(), tshirts: Tshirt.all(), transactions: Transaction.all() }
+  else
+    redirect '/'
+  end
 end
+
 
 # get("/users/new") do
 

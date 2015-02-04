@@ -3,15 +3,53 @@
     <head>
         <meta charset="UTF-8">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="adminStyle.css">
-    <title>Admin</title>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="adminStyle.css">
+        <title>Admin</title>
     </head>
     <body>
         <div class="container">
+            <h3 class = "text-center">Inventory</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-nonfluid table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="text-center">#</th>
+                            <th class="text-center">T-shirts by Color</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-center">Retail Price</th>
+                            <th class="text-center">Re-up!</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% tshirts.each do |tshirt| %>
+                            <td class="text-center"><%= tshirt.id %></td>
+                            <td class="text-center"><%= tshirt.color %></td>
+                            <td class="text-center tshirtQuantity"><%= tshirt.quantity %></td>
+                            <td class="text-center">$<%= tshirt.price %></td>
+                            <td class="text-center"><form action="/tshirt/<%= tshirt.id %>/stock" method="POST">
+                                <input type="hidden" name="_method" value="PUT">
+                                <input min = "1" type="number" name="quantity" placeholder="re-up!"/>
+                                <button >Submit</button>
+                            </form></td>
+                        </tr>
+                        <% end %>
+                        <script type="text/javascript">
+                            var quantityCells = document.querySelectorAll(".tshirtQuantity");
+                            for (var i = 0; i < quantityCells.length; i++) {
+                                var currNum = parseInt(quantityCells[i].innerText);
+                                if (currNum <= 20){
+                                quantityCells[i].setAttribute("class", "text-center tshirtQuantity danger");
+                                }
+                            };
+                        </script>
+                    </tbody>
+                </table>
+            </div>
             <h3 class = "text-center">Transactions & Customer History</h3>
             <div class="table-responsive">
                 <table class="table table-striped table-nonfluid table-bordered table-condensed">
@@ -36,46 +74,7 @@
                 </table>
             </div>
         </div>
-        <h3 class = "text-center">Inventory</h3>
-        <div class="table-responsive">
-            <table class="table table-striped table-nonfluid table-bordered table-condensed">
-                <thead>
-                    <tr>
-                        <th class="text-center">#</th>
-                        <th class="text-center">T-shirts by Color</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">Retail Price</th>
-                        <th class="text-center">Re-up!</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <% tshirts.each do |tshirt| %>
-                        <td class="text-center"><%= tshirt.id %></td>
-                        <td class="text-center"><%= tshirt.color %></td>
-                        <td class="text-center tshirtQuantity"><%= tshirt.quantity %></td>
-                        <td class="text-center">$<%= tshirt.price %></td>
-                        <td class="text-center"><form action="/tshirt/<%= tshirt.id %>/stock" method="POST">
-                            <input type="hidden" name="_method" value="PUT">
-                            <input min = "1" type="number" name="quantity" placeholder="re-up!"/>
-                            <button >Submit</button>
-                        </form></td>
-                    </tr>
-                    <% end %>
-                    <script type="text/javascript">
-                    var quantityCells = document.querySelectorAll(".tshirtQuantity");
-                      for (var i = 0; i < quantityCells.length; i++) {
-                        var currNum = parseInt(quantityCells[i].innerText);  
-                        if (currNum <= 20){
-                        quantityCells[i].setAttribute("class", "text-center tshirtQuantity danger");
-                        }
-                    };
-                  </script>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</table>
-</div>
-</body>
+
+
+    </body>
 </html>

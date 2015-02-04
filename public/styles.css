@@ -1,4 +1,4 @@
-h2, h3 {
+h1, h2, h3 {
   font-family: 'Frijole', sans-serif;
   text-align: center;
 }
@@ -22,7 +22,13 @@ width:auto;
   margin-top:3%;
 }
 
-button{
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selectShirt{
   margin-left:48%;
   margin-bottom:10%;
 }
