@@ -93,6 +93,7 @@
                                 <h3 class="modal-title">limited <%= tshirt.color%> shirt</h3>
                                 <img src="<%= tshirt.img%>">
                                 <div class = "form-quantity">
+                                    <input type="hidden" name="_method" value="PUT">
                                     <div>
                                         <input name = "quantity" id ="purchaseQuantity" min="1" max="<%= tshirt.quantity %>"> <span><i><%= tshirt.quantity%> left in stock</i></span>
                                     </div>
@@ -122,7 +123,7 @@
                                     var response = JSON.parse( xhr.responseText );
                                     
                                 });
-                                    xhr.send(packedToGo);
+                                    xhr.send(JSON.stringify(packedToGo));
                                 });
 
 
