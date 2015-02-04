@@ -19,7 +19,7 @@ post '/admin_confirm' do
 	puts "recieving this pw: #{params["password"]}"
 
   # secure_admin = Admin.find_by({admin: "david"})
-binding.pry
+
 	if BCrypt::Password.new(admin_pw) == params["password"]
 		session[:valid_user] = true
     redirect '/admin_confirm'
@@ -50,8 +50,10 @@ get("/tshirt/:id") do
   erb :show, locals: {tshirt: tshirt, transactions: Transaction.all()}
 end
 
+
 post '/users/' do
   puts "we're in the new user route"
+
   user_hash = {
     name: params["name"],
     email: params["email"]

@@ -20,3 +20,6 @@ Contributers:
 * Sinatra - held our hands
 * Bootstrap - made us smile
 * sqlite3 - kept the memories
+
+###Our Schema:
+![alt text](https://github.com/mrbernz/tshirtly/blob/master/tshirts_schema.jpg)
