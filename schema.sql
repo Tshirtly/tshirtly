@@ -20,3 +20,8 @@ user_id INTEGER REFERENCES users,
 tshirt_id INTEGER REFERENCES tshirts
 );
 
+CREATE TABLE admins (
+	id INTEGER PRIMARY KEY,
+	admin TEXT,
+	password TEXT
+);
