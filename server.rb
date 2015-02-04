@@ -62,6 +62,7 @@ post '/users/new' do
   user_hash = {
     name: params["name"],
     email: params["email"]
+    password: params ["password"]
   }
 
   User.create(user_hash)

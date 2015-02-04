@@ -10,7 +10,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="stylesheet" type="text/css" href="/styles.css">
             <meta charset="UTF-8">
-            <title>tshirtly</title>
+            <title>tshirt.ly</title>
         </head>
         <body>
             <h2 class = "bold text-center">tshirt.ly</h2>
@@ -18,7 +18,6 @@
             Admin
             </button>
             <div class="modal fade" id="admin">
-
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -28,8 +27,8 @@
                         <div class="modal-body">
                             <form action="/admin_confirm" method="POST">
                                 <div class="form-group">
-                                  <p>Enter Password:</p>
-                                  <input class="form-control" type = "text" name = "password">
+                                    <p>Enter Password:</p>
+                                    <input class="form-control" type = "text" name = "password">
                                 </div>
                                 <button class="btn btn-default" type="submit">Submit</button>
                             </form>
@@ -37,7 +36,7 @@
                     </div>
                 </div>
             </div>
-            <button id="log" type="button" class="btn btn-warn2ing btn-md" data-toggle="modal" data-target="#biggerBoat">
+            <button id="log" type="button" class="btn btn-warn2ing btn-sm" data-toggle="modal" data-target="#biggerBoat">
             Log In
             </button>
             <div class="modal fade" id="biggerBoat">
@@ -45,13 +44,15 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title" id="myModalLabel">Log In</h4>
+                            <h4 class="modal-title" id="myModalLabel">Sign up</h4>
                         </div>
                         <div class="modal-body">
                             <form action="/users/new" method="POST">
                                 <input type="text" id ="email" name = "name" placeholder="Your e-mail">
                                 <input type="text" id ="username" name = "email" placeholder="User name">
-                                <button type="submit" id ="info"> Log In </button>
+                                <input type="text" id ="pw" name = "password" placeholder="Password">
+                                <input type="text" id ="pwConfirm" name = "confirm_password" placeholder="Confirm password">
+                                <button type="submit" id ="info">Submit</button>
                             </form>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
                         <div class="modal-body">
                             <h3 class="modal-title">limited <%= tshirt.color%> shirt</h3>
                             <img src="<%= tshirt.img%>">
-                            <form action="/transaction/<%= tshirt.id %>" method="POST">
+                            <form action="/transaction/<%= tshirt.id %>" id = "purchasing" method="POST">
                                 <input type="hidden" name="_method" value="PUT">
                                 <div id="form-quantity">
                                     <input type="number" name = "quantity" min="1" max="<%= tshirt.quantity %>"> <span><i><%= tshirt.quantity%> left in stock</i></span>
@@ -79,7 +80,7 @@
                                     <input type="email" name="email" placeholder="email here">
                                 </div>
 
-                                <button data-toggle="modal" data-target="#confirmModal" type = "submit" class="btn btn-primary" role="button">Submit</button>
+                                <button type = "submit" class="btn btn-primary" role="button">Submit</button>
                             </form>
                             <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -94,14 +95,21 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
-                                        </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                        </div><!-- /.modal -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <% end %>
-
-                    </body>
-                </html>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+            <script type="text/javascript">
+                                
+                                var submitButton = document.f
+                                $('#purchasing').submit(function(){
+                                $('#confirmModal').modal('show')
+                                })
+                                
+            </script>
+        </body>
+    </html>
