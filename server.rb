@@ -51,7 +51,6 @@ get("/tshirt/:id") do
 end
 
 post '/users/new' do
-  
   user_hash = {
     name: params["name"],
     email: params["email"]
